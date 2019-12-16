@@ -81,7 +81,7 @@ class FCOSModule(torch.nn.Module):
         }
         boxes = self.box_selector_train(
             locations, box_cls, box_regression, 
-            centerness, image_sizes
+            centerness, image_sizes, targets
         )
         return boxes, losses
 
