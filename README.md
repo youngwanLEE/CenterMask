@@ -32,15 +32,15 @@ We propose a simple yet efficient anchor-free instance segmentation, called *Cen
 | [ShapeMask](https://arxiv.org/abs/1904.03239)     | R-101-FPN   |N/A |            37.4/16.1/40.1/53.8                  | 42.2/24.9/45.2/52.7      | 125| V100| - |
  | [TensorMask](https://arxiv.org/abs/1903.12174)     | R-101-FPN  | 72 |  37.1/17.4/39.1/51.6         | -                  | 380      |V100| - |
  [RetinaMask](https://arxiv.org/abs/1901.03353)    | R-101-FPN   |  24 |    34.7/14.3/36.7/50.5     | 41.4/23.0/44.5/53.0                  | 98  |V100| - |
-| [Mask R-CNN](https://arxiv.org/abs/1703.06870)     | R-101-FPN   | 24 |   37.9/18.1/40.3/53.3       | 42.2/24.9/45.2/52.7                  |  94     |V100| -                          |[link](https://dl.dropbox.com/s/rs1rgl5lupw576a/FRCN-V-57-FPN-2x-norm.pth?dl=1)|
-| **CenterMask**    | R-101-FPN   |    24 |   38.3/17.7/40.8/54.5|     43.1/25.2/46.1/54.4              | **72**      |V100| [link](https://dl.dropbox.com/s/9w17k9iiihob8vx/centermask-R-101-ms-2x.pth?dl=1)|
+| [Mask R-CNN](https://arxiv.org/abs/1703.06870)     | R-101-FPN   | 24 |   37.9/18.1/40.3/53.3       | 42.2/24.9/45.2/52.7                  |  94     |V100| -                          |[link](https://www.dropbox.com/s/rs1rgl5lupw576a/FRCN-V-57-FPN-2x-norm.pth?dl=1)|
+| **CenterMask**    | R-101-FPN   |    24 |   38.3/17.7/40.8/54.5|     43.1/25.2/46.1/54.4              | **72**      |V100| [link](https://www.dropbox.com/s/9w17k9iiihob8vx/centermask-R-101-ms-2x.pth?dl=1)|
 ||
 | [YOLACT-400](https://arxiv.org/abs/1904.02689)     | R-101-FPN   |    48 |    24.9/5.0/25.3/45.0    |         28.4/10.7/28.9/43.1          |  22   | Xp |-|
-| **CenterMask-Lite**    | MV2-FPN   |   24 |  25.2/8.6/25.8/38.2     |         28.8/14.0/30.7/37.8          | **20**      | Xp |[link](https://dl.dropbox.com/s/gsrxx63p0wtxsa3/centermask-lite-M-v2-ms-bs32-1x.pth?dl=1)|
-||
+| **CenterMask-Lite**    | MV2-FPN   |   24 |  25.2/8.6/25.8/38.2     |         28.8/14.0/30.7/37.8          | **20**      | Xp |[link](https://www.dropbox.com/s/gsrxx63p0wtxsa3/centermask-lite-M-v2-ms-bs32-1x.pth?dl=1)|
+|| 
 | [YOLACT-550](https://arxiv.org/abs/1904.02689)     | R-50-FPN   |   48 |    28.2/9.2/29.3/44.8    | 30.3/14.0/31.2/43.0                  |   23    |Xp|-|
 | [YOLACT-550](https://arxiv.org/abs/1904.02689)     | R-101-FPN   |   48 |     29.8/9.9/31.3/47.7   | 31.0/14.4/31.8/43.7                  |   30    | Xp| - |
-| **CenterMask-Lite**     | R-50-FPN   |   24 |     31.9/12.4/33.8/47.3   | 35.3/18.2/38.6/46.2                  |   29    | Xp                         |[link](https://dl.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth?dl=1)|
+| **CenterMask-Lite**     | R-50-FPN   |   24 |     31.9/12.4/33.8/47.3   | 35.3/18.2/38.6/46.2                  |   29    | Xp                         |[link](https://www.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth?dl=1)|
 
 *Note that RetinaMask, Mask R-CNN, and CenterMask are implemented by using same baseline code([maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark)) and all models are trained using multi-scale training augmentation.*
 
@@ -71,14 +71,14 @@ First of all, you have to download the weight file you want to inference.
 For examaple (CenterMask-Lite-R-50),
 ##### multi-gpu evaluation & test batch size 16,
 ```bash
-wget https://dl.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth
+wget https://www.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth
 export NGPUS=8
 python -m torch.distributed.launch --nproc_per_node=$NGPUS tools/test_net.py --config-file "configs/centermask/centermask_R_50_FPN_lite_res600_ms_bs32_1x.yaml"   TEST.IMS_PER_BATCH 16 MODEL.WEIGHT centermask-lite-R-50-ms-bs32-1x.pth
 ```
 
 ##### For single-gpu evaluation & test batch size 1,
 ```bash
-wget https://dl.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth
+wget https://www.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth
 CUDA_VISIBLE_DEVICES=0
 python tools/test_net.py --config-file "configs/centermask/centermask_R_50_FPN_lite_res600_ms_bs32_1x.yaml" TEST.IMS_PER_BATCH 1 MODEL.WEIGHT centermask-lite-R-50-ms-bs32-1x.pth
 ```
