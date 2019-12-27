@@ -25,7 +25,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called *Cen
 - pytorch1.1
 - Implemented on [fcos](https://github.com/tianzhi0549/FCOS) and [maskrcn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark) 
 
-### coco test-dev results
+### coco test-dev results 
 
 |Detector | Backbone |  epoch |   Mask AP (AP/APs/APm/APl) | Box AP (AP/APs/APm/APl) |  Time (ms) | GPU |Weight |
 |----------|----------|:--------------:|:-------------------:|:------------------------:|:--------------------------:| :---:|:---:|
@@ -42,9 +42,10 @@ We propose a simple yet efficient anchor-free instance segmentation, called *Cen
 | [YOLACT-550](https://arxiv.org/abs/1904.02689)     | R-101-FPN   |   48 |     29.8/9.9/31.3/47.7   | 31.0/14.4/31.8/43.7                  |   30    | Xp| - |
 | **CenterMask-Lite**     | R-50-FPN   |   24 |     31.9/12.4/33.8/47.3   | 35.3/18.2/38.6/46.2                  |   29    | Xp                         |[link](https://www.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth?dl=1)|
 
-*Note that RetinaMask, Mask R-CNN, and CenterMask are implemented by using same baseline code([maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark)) and all models are trained using multi-scale training augmentation.*
-
+*Note that RetinaMask, Mask R-CNN, and CenterMask are implemented by using same baseline code([maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark)) and all models are trained using multi-scale training augmentation.*\
 *We expect that if we implement our CenterMask based on [detectron2](https://github.com/facebookresearch/detectron2), it will get better performance.*
+
+[GoogleDrive weight download](https://drive.google.com/drive/folders/1llkxG5lKK7lZZ0W__7u5M5m4Ddf4YIWr?usp=sharing)
 
 
 ## Installation
