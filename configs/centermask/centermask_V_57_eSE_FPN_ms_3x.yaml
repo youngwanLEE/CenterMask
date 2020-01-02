@@ -1,0 +1,49 @@
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN"
+  WEIGHT: "https://dl.dropbox.com/s/vci2ih0nq3t3lu4/vovnet57_ese_state_dict.pth?dl=1"
+  BACKBONE:
+    CONV_BODY: "V-57-eSE-FPN-RETINANET"
+    FREEZE_CONV_BODY_AT: 0
+  VOVNET:
+    BACKBONE_OUT_CHANNELS: 256
+  RPN_ONLY: True
+  FCOS_ON: True
+  FCOS_MASK: True
+  RETINANET:
+    USE_C5: False # FCOS uses P5 instead of C5
+  MASK_ON: True
+  MASKIOU_ON: True
+  FCOS:
+    CENTER_SAMPLE: True
+    POS_RADIUS: 1.5
+    LOC_LOSS_TYPE: "giou"
+    INFERENCE_TH: 0.03
+  ROI_HEADS:
+    USE_FPN: True
+  ROI_MASK_HEAD:
+    POOLER_SCALES: (0.125, 0.0625, 0.03125) # 1/8, 1/16, 1/32
+    FEATURE_EXTRACTOR: "MaskRCNNFPNSpatialAttentionFeatureExtractor"
+    LEVEL_MAP_FUNCTION: "CenterMaskLevelMapFunc"
+    PREDICTOR: "MaskRCNNC4Predictor"
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 2
+    RESOLUTION: 28
+    SHARE_BOX_FEATURE_EXTRACTOR: False
+DATASETS:
+  TRAIN: ("coco_2014_train", "coco_2014_valminusminival")
+  TEST: ("coco_2014_minival",)
+INPUT:
+  MIN_SIZE_RANGE_TRAIN: (640, 800)
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MAX_SIZE_TEST: 1333
+DATALOADER:
+  SIZE_DIVISIBILITY: 32
+SOLVER:
+  BASE_LR: 0.01
+  WEIGHT_DECAY: 0.0001
+  STEPS: (210000, 250000)
+  MAX_ITER: 270000
+  IMS_PER_BATCH: 16
+  WARMUP_METHOD: "constant"
+OUTPUT_DIR : 'checkpoints/CenterMask-V-57-eSE-FPN-ms-3x'
