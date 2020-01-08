@@ -12,6 +12,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called *Cen
 - Open the official repo and code will be released after refactoring. (05/12/2019)
 - Release code and MobileNetV2 & ResNet backbone models shown in the [[`paper`]](https://arxiv.org/abs/1911.06667). (10/12/2019)
 - Upload the VoVNetV2 backbone models. (02/01/2020)
+- Open VoVNetV2 backbone for [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet). (08/01/2020)
 
 ## Models
 ### Environment
@@ -55,7 +56,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called *Cen
 | **CenterMask**    | R-101-FPN   |    24 | 38.0/18.2/41.3/55.2  |       43.1/25.7/47.0/55.6            | 91      | [link](https://dl.dropbox.com/s/9w17k9iiihob8vx/centermask-R-101-ms-2x.pth?dl=1)|
 | **CenterMask**    | **V2-57-FPN**   |    24 | 38.5/18.6/41.9/56.2  |      43.8/26.7/47.4/57.1             | **76**      | [link](https://www.dropbox.com/s/949k1ednumtd2rk/centermask-V2-57-FPN-ms-2x.pth?dl=1)|
 | Mask R-CNN    | R-101-FPN   |    36 | 38.0/18.4/40.8/55.2  |      42.4/25.4/45.5/55.2             |   94    | [link](https://www.dropbox.com/s/hev2k4vfh362d3s/MRCN-R-101-FPN-ms-3x.pth?dl=1)|
-| **CenterMask**    | R-101-FPN   |    36 | 38.4/19.6/41.7/56.3 |   43.5/26.9/47.2/57.0    | 91      | [link](https://www.dropbox.com/s/1uxpfh8z0sp8tr2/centermask-R-101-FPN-ms-3x.pth?dl=1)|
+| **CenterMask**    | R-101-FPN   |    36 | 38.6/19.2/42.0/56.1 |   43.7/27.2/47.6/56.7    | 91      | [link](https://www.dropbox.com/s/1uxpfh8z0sp8tr2/centermask-R-101-FPN-ms-3x.pth?dl=1)|
 | **CenterMask**    | **V2-57-FPN**   |    36 |   39.4/19.6/42.9/55.9  |      44.6/27.7/48.3/57.3 | **76**      | [link](https://www.dropbox.com/s/5m5tc4h30tqp2it/centermask-V2-57-FPN-ms-3x.pth?dl=1)|
 ||
 | Mask R-CNN    | X-101-32x8d-FPN   |    24 |   38.9/19.6/41.6/55.7    |   43.7/27.6/46.9/55.9       |   165    | [link](https://www.dropbox.com/s/o6uu0nft0a8iu5s/MRCN-X-101-FPN-ms-2x.pth?dl=1)|
@@ -110,6 +111,7 @@ python tools/test_net.py --config-file "configs/centermask/centermask_R_50_FPN_l
  - [x] train-time augmentation + 3x schedule for comparing with detectron2 models
  - [x] ResNet-50 & ResNeXt-101-32x8d
  - [x] VoVNetV2 backbones
+ - [x] VoVNetV2 backbones for [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet)
  - [ ] quick-demo
  - [ ] arxiv paper update
 
