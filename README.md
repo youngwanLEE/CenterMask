@@ -12,6 +12,8 @@ We propose a simple yet efficient anchor-free instance segmentation, called *Cen
 - Open the official repo and code will be released after refactoring. (05/12/2019)
 - Release code and MobileNetV2 & ResNet backbone models shown in the [[`paper`]](https://arxiv.org/abs/1911.06667). (10/12/2019)
 - Upload the VoVNetV2 backbone models. (02/01/2020)
+- Open VoVNetV2 backbone for [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet). (08/01/2020)
+- Upload CenterMask-Lite models trained for 48 epochs outperforming [YOLACT](https://arxiv.org/abs/1904.02689) or [YOLACT++](https://arxiv.org/abs/1912.06218). (14/01/2020)
 
 ## Models
 ### Environment
@@ -28,15 +30,21 @@ We propose a simple yet efficient anchor-free instance segmentation, called *Cen
 | [ShapeMask](https://arxiv.org/abs/1904.03239)     | R-101-FPN   |N/A |            37.4/16.1/40.1/53.8                  | 42.2/24.9/45.2/52.7      | 125| V100| - |
  | [TensorMask](https://arxiv.org/abs/1903.12174)     | R-101-FPN  | 72 |  37.1/17.4/39.1/51.6         | -                  | 380      |V100| - |
  [RetinaMask](https://arxiv.org/abs/1901.03353)    | R-101-FPN   |  24 |    34.7/14.3/36.7/50.5     | 41.4/23.0/44.5/53.0                  | 98  |V100| - |
-| [Mask R-CNN](https://arxiv.org/abs/1703.06870)     | R-101-FPN   | 24 |   37.9/18.1/40.3/53.3       | 42.2/24.9/45.2/52.7                  |  94     |V100| -                          |[link](https://dl.dropbox.com/s/rs1rgl5lupw576a/FRCN-V-57-FPN-2x-norm.pth?dl=1)|
-| **CenterMask**    | R-101-FPN   |    24 |   38.3/17.7/40.8/54.5|     43.1/25.2/46.1/54.4              | **72**      |V100| [link](https://dl.dropbox.com/s/9w17k9iiihob8vx/centermask-R-101-ms-2x.pth?dl=1)|
+| [Mask R-CNN](https://arxiv.org/abs/1703.06870)     | R-101-FPN   | 24 |   37.9/18.1/40.3/53.3       | 42.2/24.9/45.2/52.7                  |  94     |V100| -                          |[link](https://www.dropbox.com/s/rs1rgl5lupw576a/FRCN-V-57-FPN-2x-norm.pth?dl=1)|
+| **CenterMask**    | R-101-FPN   |    24 |   38.3/17.7/40.8/54.5|     43.1/25.2/46.1/54.4              | **72**      |V100| [link](https://www.dropbox.com/s/9w17k9iiihob8vx/centermask-R-101-ms-2x.pth?dl=1)|
 ||
 | [YOLACT-400](https://arxiv.org/abs/1904.02689)     | R-101-FPN   |    48 |    24.9/5.0/25.3/45.0    |         28.4/10.7/28.9/43.1          |  22   | Xp |-|
-| **CenterMask-Lite**    | MV2-FPN   |   24 |  25.2/8.6/25.8/38.2     |         28.8/14.0/30.7/37.8          | **20**      | Xp |[link](https://dl.dropbox.com/s/gsrxx63p0wtxsa3/centermask-lite-M-v2-ms-bs32-1x.pth?dl=1)|
+| **CenterMask-Lite**    | MV2-FPN   |   48 |  26.7/9.0/27.0/40.9     |    30.2/14.2/31.9/40.9          | **20**      | Xp |[link](https://www.dropbox.com/s/fk9m4uqkhrpkqc6/centermask-lite-M-v2-bs16-4x.pth?dl=1)|
 ||
-| [YOLACT-550](https://arxiv.org/abs/1904.02689)     | R-50-FPN   |   48 |    28.2/9.2/29.3/44.8    | 30.3/14.0/31.2/43.0                  |   23    |Xp|-|
-| [YOLACT-550](https://arxiv.org/abs/1904.02689)     | R-101-FPN   |   48 |     29.8/9.9/31.3/47.7   | 31.0/14.4/31.8/43.7                  |   30    | Xp| - |
-| **CenterMask-Lite**     | R-50-FPN   |   24 |     31.9/12.4/33.8/47.3   | 35.3/18.2/38.6/46.2                  |   29    | Xp                         |[link](https://dl.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth?dl=1)|
+| [YOLACT-550](https://arxiv.org/abs/1904.02689)     | R-50-FPN   |   48 |    28.2/9.2/29.3/44.8    | 30.3/14.0/31.2/43.0|23|Xp|-|
+| **CenterMask-Lite**    | V2-19-FPN   |   48 |   32.4/13.6/33.8/47.2    |    35.9/19.6/38.0/45.9         | **23**      | Xp |[link](https://www.dropbox.com/s/alifk31z3roife1/centermask-lite-V-19-eSE-ms-bs16-4x.pth?dl=1)|
+||
+| [YOLACT-550](https://arxiv.org/abs/1904.02689)     | R-101-FPN   |   48 |     29.8/9.9/31.3/47.7   | 31.0/14.4/31.8/43.7| 30 | Xp| - |
+| [YOLACT-550++](https://arxiv.org/abs/1912.06218)     | R-50-FPN   |   48 |    34.1/11.7/36.1/53.6    | - |29|Xp|-|
+| [YOLACT-550++](https://arxiv.org/abs/1912.06218)     | R-101-FPN   |   48 |     34.6/11.9/36.8/55.1   | - | 36 | Xp| - |
+| **CenterMask-Lite**     | R-50-FPN   |   24 |     31.9/12.4/33.8/47.3   | 35.3/18.2/38.6/46.2                  |   29    | Xp         |[link](https://www.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth?dl=1)|
+| **CenterMask-Lite**     | V2-39-FPN   |   48 |     36.3/15.6/38.1/53.1   |         40.7/22.4/43.2/53.5          |   **28**    | Xp         |[link](https://www.dropbox.com/s/s3atq9nzqtmdvpi/centermask-lite-V-39-eSE-ms-bs16-4x.pth?dl=1)|
+
 
 *Note that RetinaMask, Mask R-CNN, and CenterMask are implemented by using same baseline code([maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark)) and all models are trained using multi-scale training augmentation.*\
 *We expect that if we implement our CenterMask based on [detectron2](https://github.com/facebookresearch/detectron2), it will get better performance.*
@@ -55,7 +63,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called *Cen
 | **CenterMask**    | R-101-FPN   |    24 | 38.0/18.2/41.3/55.2  |       43.1/25.7/47.0/55.6            | 91      | [link](https://dl.dropbox.com/s/9w17k9iiihob8vx/centermask-R-101-ms-2x.pth?dl=1)|
 | **CenterMask**    | **V2-57-FPN**   |    24 | 38.5/18.6/41.9/56.2  |      43.8/26.7/47.4/57.1             | **76**      | [link](https://www.dropbox.com/s/949k1ednumtd2rk/centermask-V2-57-FPN-ms-2x.pth?dl=1)|
 | Mask R-CNN    | R-101-FPN   |    36 | 38.0/18.4/40.8/55.2  |      42.4/25.4/45.5/55.2             |   94    | [link](https://www.dropbox.com/s/hev2k4vfh362d3s/MRCN-R-101-FPN-ms-3x.pth?dl=1)|
-| **CenterMask**    | R-101-FPN   |    36 | 38.4/19.6/41.7/56.3 |   43.5/26.9/47.2/57.0    | 91      | [link](https://www.dropbox.com/s/1uxpfh8z0sp8tr2/centermask-R-101-FPN-ms-3x.pth?dl=1)|
+| **CenterMask**    | R-101-FPN   |    36 | 38.6/19.2/42.0/56.1 |   43.7/27.2/47.6/56.7    | 91      | [link](https://www.dropbox.com/s/1uxpfh8z0sp8tr2/centermask-R-101-FPN-ms-3x.pth?dl=1)|
 | **CenterMask**    | **V2-57-FPN**   |    36 |   39.4/19.6/42.9/55.9  |      44.6/27.7/48.3/57.3 | **76**      | [link](https://www.dropbox.com/s/5m5tc4h30tqp2it/centermask-V2-57-FPN-ms-3x.pth?dl=1)|
 ||
 | Mask R-CNN    | X-101-32x8d-FPN   |    24 |   38.9/19.6/41.6/55.7    |   43.7/27.6/46.9/55.9       |   165    | [link](https://www.dropbox.com/s/o6uu0nft0a8iu5s/MRCN-X-101-FPN-ms-2x.pth?dl=1)|
@@ -110,6 +118,7 @@ python tools/test_net.py --config-file "configs/centermask/centermask_R_50_FPN_l
  - [x] train-time augmentation + 3x schedule for comparing with detectron2 models
  - [x] ResNet-50 & ResNeXt-101-32x8d
  - [x] VoVNetV2 backbones
+ - [x] VoVNetV2 backbones for [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet)
  - [ ] quick-demo
  - [ ] arxiv paper update
 

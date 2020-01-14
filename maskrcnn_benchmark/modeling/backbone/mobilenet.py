@@ -3,15 +3,14 @@
 # licensed under the  Apache License, Version 2.0, January 2004
 
 from torch import nn
-from torch.nn import BatchNorm2d
-#from maskrcnn_benchmark.layers import FrozenBatchNorm2d as BatchNorm2d
+from maskrcnn_benchmark.layers import FrozenBatchNorm2d
 from maskrcnn_benchmark.layers import Conv2d
 
 
 def conv_bn(inp, oup, stride):
     return nn.Sequential(
         Conv2d(inp, oup, 3, stride, 1, bias=False),
-        BatchNorm2d(oup),
+        FrozenBatchNorm2d(oup),
         nn.ReLU6(inplace=True)
     )
 
@@ -19,7 +18,7 @@ def conv_bn(inp, oup, stride):
 def conv_1x1_bn(inp, oup):
     return nn.Sequential(
         Conv2d(inp, oup, 1, 1, 0, bias=False),
-        BatchNorm2d(oup),
+        FrozenBatchNorm2d(oup),
         nn.ReLU6(inplace=True)
     )
 
@@ -37,25 +36,25 @@ class InvertedResidual(nn.Module):
             self.conv = nn.Sequential(
                 # dw
                 Conv2d(hidden_dim, hidden_dim, 3, stride, 1, groups=hidden_dim, bias=False),
-                BatchNorm2d(hidden_dim),
+                FrozenBatchNorm2d(hidden_dim),
                 nn.ReLU6(inplace=True),
                 # pw-linear
                 Conv2d(hidden_dim, oup, 1, 1, 0, bias=False),
-                BatchNorm2d(oup),
+                FrozenBatchNorm2d(oup),
             )
         else:
             self.conv = nn.Sequential(
                 # pw
                 Conv2d(inp, hidden_dim, 1, 1, 0, bias=False),
-                BatchNorm2d(hidden_dim),
+                FrozenBatchNorm2d(hidden_dim),
                 nn.ReLU6(inplace=True),
                 # dw
                 Conv2d(hidden_dim, hidden_dim, 3, stride, 1, groups=hidden_dim, bias=False),
-                BatchNorm2d(hidden_dim),
+                FrozenBatchNorm2d(hidden_dim),
                 nn.ReLU6(inplace=True),
                 # pw-linear
                 Conv2d(hidden_dim, oup, 1, 1, 0, bias=False),
-                BatchNorm2d(oup),
+                FrozenBatchNorm2d(oup),
             )
 
     def forward(self, x):
@@ -125,9 +124,9 @@ class MobileNetV2(nn.Module):
                 m.weight.data.normal_(0, (2. / n) ** 0.5)
                 if m.bias is not None:
                     m.bias.data.zero_()
-            elif isinstance(m, BatchNorm2d):
-                m.weight.data.fill_(1)
-                m.bias.data.zero_()
+            # elif isinstance(m, BatchNorm2d):
+            #     m.weight.data.fill_(1)
+            #     m.bias.data.zero_()
             elif isinstance(m, nn.Linear):
                 n = m.weight.size(1)
                 m.weight.data.normal_(0, 0.01)
