@@ -207,11 +207,17 @@ class SpatialAttention(nn.Module):
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
-        avg_out = torch.mean(x, dim=1, keepdim=True)
-        max_out, _ = torch.max(x, dim=1, keepdim=True)
-        scale = torch.cat([avg_out, max_out], dim=1)
-        scale = self.conv(scale)
-        return x * self.sigmoid(scale)
+        try:
+            avg_out = torch.mean(x, dim=1, keepdim=True)
+            max_out, _ = torch.max(x, dim=1, keepdim=True)
+            scale = torch.cat([avg_out, max_out], dim=1)
+            scale = self.conv(scale)
+            out = x * self.sigmoid(scale)
+        except Exception as e:
+            print(e)
+            out = x
+
+        return out
 
 
 class Hsigmoid(nn.Module):
