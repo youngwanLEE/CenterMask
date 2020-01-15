@@ -42,7 +42,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called *Cen
 | [YOLACT-550](https://arxiv.org/abs/1904.02689)     | R-101-FPN   |   48 |     29.8/9.9/31.3/47.7   | 31.0/14.4/31.8/43.7| 30 | Xp| - |
 | [YOLACT-550++](https://arxiv.org/abs/1912.06218)     | R-50-FPN   |   48 |    34.1/11.7/36.1/53.6    | - |29|Xp|-|
 | [YOLACT-550++](https://arxiv.org/abs/1912.06218)     | R-101-FPN   |   48 |     34.6/11.9/36.8/55.1   | - | 36 | Xp| - |
-| **CenterMask-Lite**     | R-50-FPN   |   24 |     31.9/12.4/33.8/47.3   | 35.3/18.2/38.6/46.2                  |   29    | Xp         |[link](https://www.dropbox.com/s/2enqxenccz4xy6l/centermask-lite-R-50-ms-bs32-1x.pth?dl=1)|
+| **CenterMask-Lite**     | R-50-FPN   |   48 |     32.9/12.9/34.7/48.7   | 36.7/18.7/39.4/48.2                  |   29    | Xp         |[link](https://www.dropbox.com/s/nbuoit8ewd7ii4f/centermask-lite-R-50-ms-bs16-4x.pth?dl=1)|
 | **CenterMask-Lite**     | V2-39-FPN   |   48 |     36.3/15.6/38.1/53.1   |         40.7/22.4/43.2/53.5          |   **28**    | Xp         |[link](https://www.dropbox.com/s/s3atq9nzqtmdvpi/centermask-lite-V-39-eSE-ms-bs16-4x.pth?dl=1)|
 
 
