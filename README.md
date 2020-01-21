@@ -119,6 +119,7 @@ python tools/test_net.py --config-file "configs/centermask/centermask_R_50_FPN_l
  - [x] ResNet-50 & ResNeXt-101-32x8d
  - [x] VoVNetV2 backbones
  - [x] VoVNetV2 backbones for [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet)
+ - [ ] CenterMask in [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet)
  - [ ] quick-demo
  - [ ] arxiv paper update
 
