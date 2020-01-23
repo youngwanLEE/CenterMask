@@ -12,7 +12,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called **Ce
 - Open the official repo and code will be released after refactoring. (05/12/2019)
 - Release code and MobileNetV2 & ResNet backbone models shown in the [[`paper`]](https://arxiv.org/abs/1911.06667). (10/12/2019)
 - Upload the VoVNetV2 backbone models. (02/01/2020)
-- Open VoVNetV2 backbone for [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet). (08/01/2020)
+- Open VoVNetV2 backbone for [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet) --> [vovnet-detectron2](https://github.com/youngwanLEE/vovnet-detectron2). (08/01/2020)
 - Upload CenterMask-Lite models trained for 48 epochs outperforming [YOLACT](https://arxiv.org/abs/1904.02689) or [YOLACT++](https://arxiv.org/abs/1912.06218). (14/01/2020)
 
 ## Models
@@ -52,6 +52,9 @@ We propose a simple yet efficient anchor-free instance segmentation, called **Ce
 ### coco val2017 results
 |Detector | Backbone |  epoch |   Mask AP (AP/APs/APm/APl) | Box AP (AP/APs/APm/APl) |  Time (ms) | Weight |
 |----------|----------|:--------------:|:-------------------:|:------------------------:| :---:|:---:|
+| **CenterMask**    | MV2-FPN   |    36 | 31.2/14.5/32.8/46.3  |       35.5/20.6/38.0/46.8            | **56**      | [link](https://www.dropbox.com/s/t1vjdqgix7a632a/centermask-M-v2-FPN-ms-3x.pth?dl=1)|
+| **CenterMask**    | **V2-19-FPN**    |    36 |  34.7/17.3/37.5/49.6 |       39.7/24.6/42.7/50.8            | 59      | [link](https://www.dropbox.com/s/guy4b2cstnsvddj/centermask-V-19-eSE-FPN-ms-3x.pth?dl=1)|
+||
 | Mask R-CNN    | R-50-FPN   |    24 |   35.9/17.1/38.9/52.0 |     39.7/24.0/43.0/50.8              | 77      | [link](https://www.dropbox.com/s/r3ocl8ls45wsbgo/MRCN-R-50-FPN-ms-2x.pth?dl=1)|
 | **CenterMask**    | R-50-FPN   |    24 | 36.4/17.3/39.5/52.7  |       41.2/24.9/45.1/53.0            | 72      | [link](https://www.dropbox.com/s/bhpf6jud8ovvxmh/centermask-R-50-FPN-ms-2x.pth?dl=1)|
 | **CenterMask**    | **V2-39-FPN**   |    24 | 37.7/17.9/40.8/54.3   |         42.6/25.3/46.3/55.2          | **70**      | [link](https://www.dropbox.com/s/ugcpzcx5b4btvjc/centermask-V2-39-FPN-ms-2x.pth?dl=1)|

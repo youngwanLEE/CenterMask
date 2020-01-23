@@ -1,16 +1,17 @@
 MODEL:
   META_ARCHITECTURE: "GeneralizedRCNN"
-  WEIGHT: "https://cloudstor.aarnet.edu.au/plus/s/xtixKaxLWmbcyf7/download#mobilenet_v2-ecbe2b5.pth"
+  WEIGHT: "https://dl.dropbox.com/s/f5db5r6jjia2wj8/vovnet19-ese-statedict.pth?dl=1"
   BACKBONE:
-    CONV_BODY: "MNV2-FPN-RETINANET"
+    CONV_BODY: "V-19-eSE-FPN-RETINANET"
     FREEZE_CONV_BODY_AT: 0
-  RESNETS:
+  VOVNET:
     BACKBONE_OUT_CHANNELS: 256
   RPN_ONLY: True
   FCOS_ON: True
   FCOS_MASK: True
   RETINANET:
     USE_C5: False # FCOS uses P5 instead of C5
+  MASK_ON: True
   FCOS:
     CENTER_SAMPLE: True
     POS_RADIUS: 1.5
@@ -18,7 +19,6 @@ MODEL:
     INFERENCE_TH: 0.03
   ROI_HEADS:
     USE_FPN: True
-  MASK_ON: True
   ROI_MASK_HEAD:
     POOLER_SCALES: (0.125, 0.0625, 0.03125) # 1/8, 1/16, 1/32
     FEATURE_EXTRACTOR: "MaskRCNNFPNSpatialAttentionFeatureExtractor"
@@ -45,4 +45,4 @@ SOLVER:
   MAX_ITER: 270000
   IMS_PER_BATCH: 16
   WARMUP_METHOD: "constant"
-OUTPUT_DIR : 'checkpoints/CenterMask-M-v2-FPN-ms-3x'
+OUTPUT_DIR : 'checkpoints/CenterMask-V-19-eSE-FPN-ms-3x'
