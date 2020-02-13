@@ -145,10 +145,11 @@ python tools/test_net.py --config-file "configs/centermask/centermask_R_50_FPN_l
 
 Please cite our paper in your publications if it helps your research:
 
-    @article{lee2019centermask,
-      title={CenterMask: Real-Time Anchor-Free Instance Segmentation},
-      author={Lee, Youngwan and Park, Jongyoul},
-      journal={arXiv preprint arXiv:1911.06667},
-      year={2019}
-    }
-    
+```BibTeX
+@article{lee2019centermask,
+  title={CenterMask: Real-Time Anchor-Free Instance Segmentation},
+  author={Lee, Youngwan and Park, Jongyoul},
+  journal={arXiv preprint arXiv:1911.06667},
+  year={2019}
+} 
+```
