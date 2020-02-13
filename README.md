@@ -10,7 +10,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called **Ce
 ## Highlights
 - ***First* anchor-free one-stage instance segmentation.** To the best of our knowledge, **CenterMask** is the first instance segmentation on top of anchor-free object detection (15/11/2019).
 - **Toward Real-Time: CenterMask-Lite.**  This works provide not only large-scale CenterMask but also lightweight CenterMask-Lite that can run at real-time speed (> 30 fps).
-- **State-of-the-art performance.**  CenterMask outperforms Mask R-CNN, TensorMask, and ShapeMask at much faster speed and CenterMask-Lite models also surpasse YOLACT or YOLACT++ by large margins.
+- **State-of-the-art performance.**  CenterMask outperforms Mask R-CNN, TensorMask, and ShapeMask at much faster speed and CenterMask-Lite models also surpass YOLACT or YOLACT++ by large margins.
 - **Well balanced (speed/accuracy) backbone network, VoVNetV2.**  VoVNetV2 shows better performance and faster speed than ResNe(X)t or HRNet.
 
 ## Updates
@@ -37,6 +37,8 @@ We propose a simple yet efficient anchor-free instance segmentation, called **Ce
  [RetinaMask](https://arxiv.org/abs/1901.03353)    | R-101-FPN   |  24 |    34.7/14.3/36.7/50.5     | 41.4/23.0/44.5/53.0                  | 98  |V100| - |
 | [Mask R-CNN](https://arxiv.org/abs/1703.06870)     | R-101-FPN   | 24 |   37.9/18.1/40.3/53.3       | 42.2/24.9/45.2/52.7                  |  94     |V100| -                          |[link](https://www.dropbox.com/s/rs1rgl5lupw576a/FRCN-V-57-FPN-2x-norm.pth?dl=1)|
 | **CenterMask**    | R-101-FPN   |    24 |   38.3/17.7/40.8/54.5|     43.1/25.2/46.1/54.4              | **72**      |V100| [link](https://www.dropbox.com/s/9w17k9iiihob8vx/centermask-R-101-ms-2x.pth?dl=1)|
+| **CenterMask**    | X-101-FPN   |    36 |   39.6/19.7/42.0/55.2|     44.6/27.1/47.2/55.2              | 123      |V100| [link](https://www.dropbox.com/s/yrczyb1u49hv05a/centermask-X-101-FPN-ms-3x.pth?dl=1)|
+| **CenterMask**    | V2-99-FPN |    36 |   40.6/20.1/42.8/57.0|     45.8/27.8/48.3/57.6              | 84      |V100| [link](https://www.dropbox.com/s/99i7ydsz2ngrvu1/centermask-V2-99-FPN-ms-3x.pth?dl=1)|
 ||
 | [YOLACT-400](https://arxiv.org/abs/1904.02689)     | R-101-FPN   |    48 |    24.9/5.0/25.3/45.0    |         28.4/10.7/28.9/43.1          |  22   | Xp |-|
 | **CenterMask-Lite**    | MV2-FPN   |   48 |  26.7/9.0/27.0/40.9     |    30.2/14.2/31.9/40.9          | **20**      | Xp |[link](https://www.dropbox.com/s/fk9m4uqkhrpkqc6/centermask-lite-M-v2-bs16-4x.pth?dl=1)|
@@ -53,6 +55,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called **Ce
 
 *Note that RetinaMask, Mask R-CNN, and CenterMask are implemented by using same baseline code([maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark)) and all models are trained using multi-scale training augmentation.*\
 *We expect that if we implement our CenterMask based on [detectron2](https://github.com/facebookresearch/detectron2), it will get better performance.*
+*24/36/48/72 epoch are same as 2x/3x/4x/6x training schedule in [detectron](https://github.com/facebookresearch/Detectron), respectively.*
 
 ### coco val2017 results
 |Detector | Backbone |  epoch |   Mask AP (AP/APs/APm/APl) | Box AP (AP/APs/APm/APl) |  Time (ms) | Weight |
