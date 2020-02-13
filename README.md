@@ -54,7 +54,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called **Ce
 
 
 *Note that RetinaMask, Mask R-CNN, and CenterMask are implemented by using same baseline code([maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark)) and all models are trained using multi-scale training augmentation.*\
-*We expect that if we implement our CenterMask based on [detectron2](https://github.com/facebookresearch/detectron2), it will get better performance.*
+*We expect that if we implement our CenterMask based on [detectron2](https://github.com/facebookresearch/detectron2), it will get better performance.*\
 *24/36/48/72 epoch are same as 2x/3x/4x/6x training schedule in [detectron](https://github.com/facebookresearch/Detectron), respectively.*
 
 ### coco val2017 results
