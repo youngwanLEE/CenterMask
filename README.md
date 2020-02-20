@@ -19,7 +19,7 @@ We propose a simple yet efficient anchor-free instance segmentation, called **Ce
 - Upload the VoVNetV2 backbone models. (02/01/2020)
 - Open VoVNetV2 backbone for [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet) --> [vovnet-detectron2](https://github.com/youngwanLEE/vovnet-detectron2). (08/01/2020)
 - Upload CenterMask-Lite models trained for 48 epochs outperforming [YOLACT](https://arxiv.org/abs/1904.02689) or [YOLACT++](https://arxiv.org/abs/1912.06218). (14/01/2020)
-
+- [centermask2](https://github.com/youngwanLEE/centermask2) has been released. (20/02/2020)
 ## Models
 ### Environment
 - V100 or Titan Xp GPU
@@ -132,7 +132,7 @@ python tools/test_net.py --config-file "configs/centermask/centermask_R_50_FPN_l
  - [x] ResNet-50 & ResNeXt-101-32x8d
  - [x] VoVNetV2 backbones
  - [x] VoVNetV2 backbones for [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet)
- - [ ] CenterMask in [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet)
+ - [x] CenterMask in [Detectron2](https://github.com/youngwanLEE/detectron2/tree/vovnet/projects/VoVNet)
  - [ ] quick-demo
  - [ ] arxiv paper update
 
