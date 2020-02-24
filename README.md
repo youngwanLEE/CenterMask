@@ -151,7 +151,7 @@ Please cite our paper in your publications if it helps your research:
 @article{lee2019centermask,
   title={CenterMask: Real-Time Anchor-Free Instance Segmentation},
   author={Lee, Youngwan and Park, Jongyoul},
-  journal={arXiv preprint arXiv:1911.06667},
-  year={2019}
+  booktitle={CVPR},
+  year={2020}
 } 
 ```
