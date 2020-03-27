@@ -114,6 +114,7 @@ class DetectronCheckpointer(Checkpointer):
             model, optimizer, scheduler, save_dir, save_to_disk, logger
         )
         self.cfg = cfg.clone()
+        self.is_train = False
         if optimizer is not None:
             self.is_train = True
 
