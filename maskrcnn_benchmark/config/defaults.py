@@ -312,7 +312,9 @@ _C.MODEL.VOVNET.PRETRAINED = ""
 _C.MODEL.VOVNET.USE_GN = False
 _C.MODEL.VOVNET.OUT_CHANNELS = 256
 _C.MODEL.VOVNET.BACKBONE_OUT_CHANNELS = 256
-
+_C.MODEL.VOVNET.STAGE_WITH_DCN = (False, False, False, False)
+_C.MODEL.VOVNET.WITH_MODULATED_DCN = False
+_C.MODEL.VOVNET.DEFORMABLE_GROUPS = 1
 
 
 # ---------------------------------------------------------------------------- #

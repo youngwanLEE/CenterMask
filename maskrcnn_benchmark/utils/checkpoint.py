@@ -8,6 +8,7 @@ from maskrcnn_benchmark.utils.model_serialization import load_state_dict
 from maskrcnn_benchmark.utils.c2_model_loading import load_c2_format
 from maskrcnn_benchmark.utils.imports import import_file
 from maskrcnn_benchmark.utils.model_zoo import cache_url
+from maskrcnn_benchmark.utils.deformable_model_loading import load_deformable_vovnet
 
 
 class Checkpointer(object):
@@ -113,6 +114,8 @@ class DetectronCheckpointer(Checkpointer):
             model, optimizer, scheduler, save_dir, save_to_disk, logger
         )
         self.cfg = cfg.clone()
+        if optimizer is not None:
+            self.is_train = True
 
     def _load_file(self, f):
         # catalog lookup
@@ -133,7 +136,10 @@ class DetectronCheckpointer(Checkpointer):
         if f.endswith(".pkl"):
             return load_c2_format(self.cfg, f)
         # load native detectron.pytorch checkpoint
-        loaded = super(DetectronCheckpointer, self)._load_file(f)
+        if self.is_train and True in self.cfg.MODEL.VOVNET.STAGE_WITH_DCN:
+            return load_deformable_vovnet(self.cfg, f)
+        else:
+            loaded = super(DetectronCheckpointer, self)._load_file(f)
         if "model" not in loaded:
             loaded = dict(model=loaded)
         return loaded

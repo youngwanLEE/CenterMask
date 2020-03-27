@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from collections import OrderedDict
 from maskrcnn_benchmark.utils.registry import Registry
-from maskrcnn_benchmark.layers import FrozenBatchNorm2d
+from maskrcnn_benchmark.layers import FrozenBatchNorm2d, DFConv2d
 from maskrcnn_benchmark.modeling.make_layers import group_norm
 
 _GN = False
@@ -70,6 +70,19 @@ def conv3x3(in_channels, out_channels, module_name, postfix, stride=1, groups=1,
         (f'{module_name}_{postfix}/relu', nn.ReLU(inplace=True))
     ]
 
+def DFConv3x3(in_channels, out_channels, module_name, postfix, stride=1, groups=1, kernel_size=3, 
+                with_modulated_dcn=None, deformable_groups=None):
+    """3x3 convolution with padding"""
+    return [
+        (f'{module_name}_{postfix}/conv',
+         DFConv2d(in_channels, out_channels, with_modulated_dcn=with_modulated_dcn,
+            kernel_size=kernel_size, stride=stride, groups=groups, 
+            deformable_groups=deformable_groups, bias=False)),
+        (f'{module_name}_{postfix}/norm',
+            group_norm(out_channels) if _GN else FrozenBatchNorm2d(out_channels)
+        ),
+        (f'{module_name}_{postfix}/relu', nn.ReLU(inplace=True))
+    ]
 
 def conv1x1(in_channels, out_channels, module_name, postfix, stride=1, groups=1, kernel_size=1, padding=0):
     """1x1 convolution with padding"""
@@ -115,17 +128,26 @@ class _OSA_module(nn.Module):
                  stage_ch, 
                  concat_ch, 
                  layer_per_block, 
-                 module_name, 
+                 module_name,
                  SE=False,
-                 identity=False):
+                 identity=False,
+                 dcn_config={}
+                 ):
 
         super(_OSA_module, self).__init__()
 
         self.identity = identity
         self.layers = nn.ModuleList()
         in_channel = in_ch
+        with_dcn = dcn_config.get("stage_with_dcn", False)
         for i in range(layer_per_block):
-            self.layers.append(nn.Sequential(OrderedDict(conv3x3(in_channel, stage_ch, module_name, i))))
+            if with_dcn:
+                deformable_groups = dcn_config.get("deformable_groups", 1)
+                with_modulated_dcn = dcn_config.get("with_modulated_dcn", False)
+                self.layers.append(nn.Sequential(OrderedDict(DFConv3x3(in_channel, stage_ch, module_name, i, 
+                    with_modulated_dcn=with_modulated_dcn, deformable_groups=deformable_groups))))
+            else:
+                self.layers.append(nn.Sequential(OrderedDict(conv3x3(in_channel, stage_ch, module_name, i))))
             in_channel = stage_ch
 
         # feature aggregation
@@ -165,7 +187,9 @@ class _OSA_stage(nn.Sequential):
                  block_per_stage, 
                  layer_per_block, 
                  stage_num,
-                 SE=False):
+                 SE=False,
+                 dcn_config={},
+                ):
         super(_OSA_stage, self).__init__()
 
         if not stage_num == 2:
@@ -179,7 +203,9 @@ class _OSA_stage(nn.Sequential):
                                                  concat_ch, 
                                                  layer_per_block, 
                                                  module_name,
-                                                 SE))
+                                                 SE=SE,
+                                                 dcn_config=dcn_config
+                                                 ))
         for i in range(block_per_stage - 1):
             if i != block_per_stage -2: #last block
                 SE = False
@@ -190,8 +216,10 @@ class _OSA_stage(nn.Sequential):
                                         concat_ch, 
                                         layer_per_block, 
                                         module_name, 
-                                        SE,
-                                        identity=True))
+                                        SE=SE,
+                                        identity=True,
+                                        dcn_config=dcn_config
+                                        ))
 
 
 
@@ -210,7 +238,6 @@ class VoVNet(nn.Module):
         block_per_stage = stage_specs['block_per_stage']
         layer_per_block = stage_specs['layer_per_block']
         SE = stage_specs['eSE']
-
 
         # self.stem = nn.Sequential()
         # Stem module
@@ -232,7 +259,13 @@ class VoVNet(nn.Module):
                                              block_per_stage[i],
                                              layer_per_block,
                                              i + 2,
-                                             SE))
+                                             SE,
+                                            dcn_config = {
+                                                "stage_with_dcn": cfg.MODEL.VOVNET.STAGE_WITH_DCN[i],
+                                                "with_modulated_dcn": cfg.MODEL.VOVNET.WITH_MODULATED_DCN,
+                                                "deformable_groups": cfg.MODEL.VOVNET.DEFORMABLE_GROUPS,
+                                            }
+            ))
 
         # initialize weights
         self._initialize_weights()
